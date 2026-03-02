@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport"
+    content="width=device-with, initial-scale=1">
+    <title>QWER Philippines</title>
+    <link rel="icon" type="image/x-icon" href="qwerlogo.png">
+    <link rel="stylesheet" href="index.css"/> 
+</head>
+<body>
+
+
+<h3 style="text-align: center; font-family: Lemon Milk;">SNS CAPTIONING AREA</h3>
+
+<div >
+    <textarea class="txtar1" id="txtar" rows="10" cols="40" placeholder="Input Caption Here"></textarea>
+    </div>
+    <br>
+     <div class="selection">
+        <b><label for="updates">Choose a  Header: </label></b>
+     <select name="updates" class="bx1" id="choose">
+        <option value="[PHOTO]">Photo Update</option>
+        <option value="[VIDEO]">Video Update</option>
+        <option value="membt">Member Update</option>
+        
+
+        </select>
+        <br>
+        <br>
+        <div class="selection">
+        <b><label for="updates">Choose a Sub Header: </label></b>
+     <select name="updates" class="bx1" id="choose1">
+        <option value="Instagram Update">Instagram</option>
+        <option value="Youtube Update">Youtube</option>
+        <option value="Weverse Update">Weverse</option>
+        <option value="X Update">Twitter</option>
+        
+        </select>
+        
+
+         
+        <!--<div class="selection">
+            <b><label for="updates">Choose members : </label></b>
+         <select name="updates" class="bx1" id="choose2">
+            <option value="">---</option>
+            <option value="Carmen">Jiwoo Update</option>
+            <option value="Jiwoo">Carmen Update</option>
+            <option value="Yuha"> Yuha Update</option>
+            <option value="Stella">Stella Update</option>
+            <option value="Juun">Juun Update</option>
+            <option value="Ana">A-na Update</option>
+            <option value="Ian">Ian Update</option>
+            <option value="Yeon">Ye-on Update</option>
+            </select>//-->
+        <br>
+        <br>
+<b><label for="members">Choose Members: </label><br></b>
+<div class="smem">
+<input type="checkbox" 
+           name="members" 
+           value="Carmen"> Carmen
+    <input type="checkbox" 
+           name="members" 
+           value="Jiwoo"> Jiwoo
+    <input type="checkbox" 
+           name="members" 
+           value="Yuha"> Yuha
+    <input type="checkbox" 
+           name="members" 
+           value="Stella"> Stella
+    <br>
+    <input type="checkbox" 
+           name="members" 
+           value="Juun"> Juun
+    <input type="checkbox" 
+           name="members" 
+           value="Ana"> A-na 
+    <input type="checkbox" 
+           name="members" 
+           value="Ian"> Ian 
+    <input type="checkbox" 
+           name="members" 
+           value="Yeon">Ye-on
+        
+           
+           <br><br>
+</div>
+    <button class="btn1" type="button" onclick="getValue()" id="chk">
+        Enter
+    </button>
+<br>
+<div >
+    <textarea class="txtar4" id="heard" rows="3" cols="40" placeholder="Example Header" readonly></textarea>
+    </div>
+         <div >
+    <textarea class="txtar3" id="merms" rows="5" cols="40" placeholder="Example Hashtag" readonly></textarea>
+    </div>
+    
+    <form>
+        <b><label>Additional Hashtags</label></b>
+        <div >
+            <textarea class="txtar3" id="other" rows="1" cols="40" placeholder="Input Additional Hashtags Here"></textarea>
+            </div>
+    </form>
+    <br>
+    <form>
+        <b><label>Add date</label></b>
+        <div >
+            <textarea class="txtar5" id="date" rows="1" cols="40" placeholder="Input Date {YYMMDD}"></textarea>
+            </div>
+    </form>
+
+
+    
+    <br>
+    <div style="margin-left: 4%">
+   <b><label>Link Included</label></b>
+    <select id="link">
+       <option value="yes">Yes</option>
+       <option value="no">No</option>
+    </select>
+    </div>
+        <br>
+    <div >
+       <textarea class="txtar3" id="lenk" rows="1" cols="40" placeholder="Input Link Here"></textarea>
+       </div>
+   </div>
+   
+    <br>
+    <button class="btn1" type="button" onclick="greet()" id="clck">Generate</button>
+
+
+   <br>
+   <br>
+   <textarea class="txtar2" id="header" rows="15" cols="40" readonly></textarea>
+   <br>
+   <button class="btn2" type="button" onclick="copycat()" id="clip">Copy to Clipboard</button>
+   <br>
+   <br>
+   <br>
+   <br>
+<script>
+function getValue() {
+            fetch('data.json')
+            .then (response => response.json())
+            .then (data => {
+                console.log(data)
+            let checkboxes =
+                document.getElementsByName('members');
+            let result = "";
+            for (var i = 0; i < checkboxes.length; i++) {
+        
+                if (checkboxes[i].checked) {
+                    mem = checkboxes[i].value
+                    mem1 = data[mem].hash
+                    mem2 = data[mem].head
+                    result += mem1
+                        + " " + " ";
+                    
+                }
+            }
+
+    document.getElementById("merms").innerHTML = result;
+    document.getElementById("heard").innerHTML = mem2;
+})}
+  
+function greet(){
+        var cap = document.getElementById("txtar").value;
+        var clck = document.getElementById("clck");
+        var oth = document.getElementById("other").value;
+        var choo = document.getElementById("choose").value;
+        var choo1 = document.getElementById("choose1").value;
+    
+        var link = document.getElementById("link").value;
+        var tek = document.getElementById("merms").value;
+        var her = document.getElementById("heard").value;
+        var dats = document.getElementById("date").value;
+    
+  clck.addEventListener("click",function(){
+            
+            var link = document.getElementById("link").value;
+            if (link == "yes") {
+                var lonk = document.getElementById("lenk").value;
+                var ans = "🔗 " + lonk + "\n" + "\n";
+            }
+
+            if (link == "no") {
+                var ans = " " + "\n";
+            }
+            
+            if (choo == "membt") {
+                var herd = her;
+            }
+
+            if (choo !== "membt") {
+                var herd = choo
+            }
+
+
+            document.getElementById("header").innerHTML = 
+            herd + " " + dats + " Hearts2Hearts " + choo1 + "\n" + "\n" + cap
+            + "\n" + "\n" + ans + "#Hearts2Hearts #하츠투하츠 " + tek + " " + oth
+            ;
+            
+        })
+    }
+
+    function copycat(){
+        var copykey = document.getElementById("header");
+
+            copykey.select();
+            copykey.setSelectionRange(0,9999999);
+
+            document.execCommand("copy");
+            alert("copied to clipboard");
+    }
+</script>
+
+</body>
+</html>
